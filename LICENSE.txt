@@ -1,0 +1,9 @@
+Copyright (c) 2026 Ersiemore
+
+All rights reserved.
+
+The source code of this project may not be copied, redistributed, modified, or reused without permission from the author.
+
+Third-party assets belong to their respective creators.
+
+Asset credits and licenses are listed in CREDITS.md.
