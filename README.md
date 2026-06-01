@@ -32,6 +32,10 @@ See CREDITS.md
 
 # ErsieJump
 
+A 2D pixel-art survival platformer made with Pygame.
+
+## Screenshots
+
 ![Gameplay](screenshots/gameplay.png)
 
-![Gameplay](screenshots/gameover.png)
+![Game Over](screenshots/gameover.png)
