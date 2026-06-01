@@ -33,3 +33,5 @@ See CREDITS.md
 # ErsieJump
 
 ![Gameplay](screenshots/gameplay.png)
+
+![Gameplay](screenshots/gameover.png)
