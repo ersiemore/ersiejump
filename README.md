@@ -29,3 +29,7 @@ Developer: Ersiemore
 Credits
 
 See CREDITS.md
+
+# ErsieJump
+
+![Gameplay](screenshots/gameplay.png)
