@@ -94,7 +94,37 @@ for i in range(4):
     frame = pygame.transform.scale(frame, (130, 130))
     enemy_frames.append(frame)
 
+best_score = 0
+
+def main_menu():
+    bg_sound.stop()
+    font = pygame.font.SysFont(None, 60)
+    screen.fill((0, 0, 0))
+    screen.blit(bg, (0, 0))
+    running = True
+    while running:
+
+
+        start = font.render("JUMP FOR START", True, (255, 255, 255))
+        screen.blit(start, (650, 400))
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+                pygame.quit()
+                sys.exit()
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    play()
+                    return
+
+        pygame.display.flip()
+        clock.tick(60)
+
+
 def play():
+    global best_score
     frame_index = 0
     animation_speed = 0.15
     player_speed = 6
@@ -138,8 +168,8 @@ def play():
             )
 
             screen.blit(bg, (0, 0))
-            screen.blit(game_over_text, (750, 300))
-            screen.blit(restart_text, (700, 400))
+            screen.blit(game_over_text, (700, 300))
+            screen.blit(restart_text, (650, 350))
 
             keys = pygame.key.get_pressed()
 
@@ -211,10 +241,6 @@ def play():
             velocity_y = 0
             is_grounded = True
 
-        if keys[pygame.K_ESCAPE]:
-            bg_sound.stop()
-
-
         if not is_grounded:
             current_frames = jump_frames
         elif moving:
@@ -272,6 +298,8 @@ def play():
         )
 
         if player_hitbox.colliderect(enemy_hitbox):
+            if score > best_score:
+                best_score = score
             game_over = True
 
         if enemy.right < 0:
@@ -280,12 +308,37 @@ def play():
            enemy_speed += 0.10
 
         score_text = font.render(
-            f"Score: {score}",
+            f"SCORE: {score}",
             True,
             (255, 255, 255)
         )
 
         screen.blit(score_text, (20, 20))
+
+        back_text = font.render(
+            "RETURN MENU ESCAPE",
+            True,
+            (255, 255, 255)
+        )
+
+        screen.blit(back_text, (20, 140))
+
+        mute_text = font.render(
+            "MUTE MUSIC TAB",
+            True,
+            (255, 255, 255)
+        )
+
+
+        screen.blit(mute_text, (20, 100))
+
+        best_score_text = font.render(
+            f"BEST SCORE: {best_score}",
+            True,
+            (255, 255, 255)
+        )
+
+        screen.blit(best_score_text, (20, 60))
 
 
         for event in pygame.event.get():
@@ -293,6 +346,19 @@ def play():
                 running = False
                 pygame.quit()
                 sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    if score > best_score:
+                        best_score = score
+                    player.x = 140
+                    player.y = 710
+
+                    enemy.x = WIDTH + 300
+                    bg_sound.set_volume(0.0100)
+                    main_menu()
+                    return
+                if event.key == pygame.K_TAB:
+                    bg_sound.stop()
 
         pygame.display.flip()
         clock.tick(60)
@@ -307,4 +373,4 @@ def reset_game():
     return 0, False
 
 if __name__ == "__main__":
-    play()
+    main_menu()
