@@ -212,10 +212,10 @@ def play():
         )
 
         enemy_hitbox = pygame.Rect(
-            enemy.x + 5,
-            enemy.y + 20,
-            60,
-            80
+            enemy.x + 20,
+            enemy.y + 40,
+            50,
+            60
         )
 
         moving = False
