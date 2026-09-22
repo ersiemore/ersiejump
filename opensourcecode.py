@@ -1,6 +1,8 @@
 import pygame
 import sys
 import os
+import random
+
 
 def resource_path(relative_path):
     try:
@@ -138,6 +140,11 @@ def play():
     last_animation = None
     score = 0
     font = pygame.font.SysFont(None, 60)
+    def respawn_enemy():
+        enemy.x = WIDTH + random.randint(500, 1000)
+        enemy.y = random.choice([550, 630, 500])
+
+    respawn_enemy()
 
     enemy_speed = 8
     enemy_frame_index = 0
@@ -145,7 +152,7 @@ def play():
     game_over = False
 
     bg_sound.play(-1)
-    bg_sound.set_volume(0.100)
+    bg_sound.set_volume(0.300)
 
     while running:
         if game_over:
@@ -178,7 +185,7 @@ def play():
                 player.x = 140
                 player.y = 710
 
-                enemy.x = WIDTH + 300
+                respawn_enemy()
 
                 velocity_y = 0
                 is_grounded = True
@@ -303,9 +310,9 @@ def play():
             game_over = True
 
         if enemy.right < 0:
-           enemy.x = WIDTH + 300
+           respawn_enemy()
            score += 10
-           enemy_speed += 0.10
+           enemy_speed += 0.20
 
         score_text = font.render(
             f"SCORE: {score}",
