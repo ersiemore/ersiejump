@@ -54,6 +54,10 @@ As you survive, your score increases and the game becomes more difficult. The go
 
 ![Game Over](screenshots/gameover.png)
 
+### NewWorld
+
+![NewWorld](screenshots/newworld.png)
+
 ## Project Structure
 
 ```text
